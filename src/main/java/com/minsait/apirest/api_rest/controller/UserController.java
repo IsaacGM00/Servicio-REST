@@ -1,6 +1,5 @@
 package com.minsait.apirest.api_rest.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.minsait.apirest.api_rest.UserService;
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("api/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
