@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserDTOTest {
-
     @Test
     void testSettersAndGetters() {
         UserDTO dto = new UserDTO();
@@ -44,4 +43,5 @@ class UserDTOTest {
         assertEquals("Gutierrez", dto.getLastName());
         assertEquals("isaac@example.com", dto.getEmail());
     }
+
 }
