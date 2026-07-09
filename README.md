@@ -39,7 +39,7 @@ Una vez realizado lo anterior, es posible visualizar los endpoints en "Postman" 
 1. Se ingresa en el navegador el siguiente link: http://localhost:8080/swagger-ui/index.html
    
 2. Se tiene que ver como la siguiente imagen la pantalla
-   <img width="1896" height="902" alt="image" src="https://github.com/user-attachments/assets/332fdab7-570b-42dd-985c-d69d7f75c905" />
+   <img width="1422" height="902" alt="image" src="https://github.com/user-attachments/assets/57fc0b12-1680-493f-b4df-5f2ae7561195" />
 
 3. Para realizar un registro, se le da clic en el botón "Try it out"
    <img width="1422" height="460" alt="image" src="https://github.com/user-attachments/assets/8345d24b-46dd-4d23-a376-8bd480e95de9" />
