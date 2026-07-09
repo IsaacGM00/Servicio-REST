@@ -31,7 +31,7 @@ class UserControllerTest {
         user.setLastName("Martínez");
         user.setEmail("isaac@example.com");
 
-        when(userService.createuser(ArgumentMatchers.any(User.class))).thenReturn(user);
+        when(userService.createUser(ArgumentMatchers.any(User.class))).thenReturn(user);
 
         User result = userController.createUser(user);
 
@@ -39,15 +39,28 @@ class UserControllerTest {
         assertEquals("Isaac", result.getFirstName());
         assertEquals("Martínez", result.getLastName());
         assertEquals("isaac@example.com", result.getEmail());
-        verify(userService, times(1)).createuser(any(User.class));
+        verify(userService, times(1)).createUser(any(User.class));
     }
 
     @Test
     void testGetAllUsers() {
         List<User> users = Arrays.asList(
-                new User() {{ setId(1L); setFirstName("Isaac"); setLastName("Martínez"); setEmail("isaac@example.com"); }},
-                new User() {{ setId(2L); setFirstName("Ana"); setLastName("López"); setEmail("ana@example.com"); }}
-        );
+                new User() {
+                    {
+                        setId(1L);
+                        setFirstName("Isaac");
+                        setLastName("Martínez");
+                        setEmail("isaac@example.com");
+                    }
+                },
+                new User() {
+                    {
+                        setId(2L);
+                        setFirstName("Ana");
+                        setLastName("López");
+                        setEmail("ana@example.com");
+                    }
+                });
         when(userService.getAllUsers()).thenReturn(users);
 
         List<User> result = userController.getAllUsers();

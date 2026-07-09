@@ -33,7 +33,7 @@ class UserServiceImplTest {
 
         when(userRepository.save(user)).thenReturn(user);
 
-        User created = userService.createuser(user);
+        User created = userService.createUser(user);
 
         assertNotNull(created);
         assertEquals("Isaac", created.getFirstName());

@@ -4,7 +4,7 @@ import com.minsait.apirest.api_rest.model.User;
 import java.util.List;
 
 public interface UserService {
-    User createuser(User user);
+    User createUser(User user);
 
     User getUserById(Long id);
 
