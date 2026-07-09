@@ -1,6 +1,6 @@
 Para ejecutar el servicio REST:
   - Se compila con el comando "mvn clean install", se tiene que ver como se muestra a continuación:
-    <img width="1542" height="917" alt="image" src="https://github.com/user-attachments/assets/8252eb7c-9944-43c1-9bc8-92252f536fd3" />
+    <img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/8252eb7c-9944-43c1-9bc8-92252f536fd3" />
   - Después, se levanta con el comando "mvn spring-boot:run", se tiene que ver como se aprecia a continuación:
     <img width="1547" height="936" alt="image" src="https://github.com/user-attachments/assets/6e0e9b8b-b5d4-4a2a-a989-6dc2ff4d008d" />
 
