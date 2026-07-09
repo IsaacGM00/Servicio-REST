@@ -8,18 +8,19 @@ Una vez realizado lo anterior, es posible visualizar los endpoints en "Postman" 
 
 <b>Postman</b>
 1. En la barra de hasta arriba, para realizar un registro, se coloca la acción "POST" junto con el siguiente link: http://localhost:8080/api/users
+   <br></br>
    <img width="346" height="57" alt="image" src="https://github.com/user-attachments/assets/81266e45-f858-4f02-afdc-b0b716b3081d" />
 
-2. En la pestaña "Body", en la esquina derecha, seleccionar "JSON"
+3. En la pestaña "Body", en la esquina derecha, seleccionar "JSON"
    <img width="680" height="300" alt="image" src="https://github.com/user-attachments/assets/ff0e4fa1-cf7f-4408-ab94-a73ed8f9894d" />
 
-3. Colocar el cuerpo de los datos a registrar acorde a las variables existentes en el codigo
+4. Colocar el cuerpo de los datos a registrar acorde a las variables existentes en el codigo
    <img width="562" height="122" alt="image" src="https://github.com/user-attachments/assets/2edd5465-947a-415d-8372-f34ecdc9a69b" />
 
-4. Se muestra un mensaje 200 de éxito
+5. Se muestra un mensaje 200 de éxito
    <img width="1487" height="192" alt="image" src="https://github.com/user-attachments/assets/82a5b296-c9a4-4f34-9ed0-5ec39deb20a0" />
 
-5. Para realizar otras acciones como consultar o borrar, se repite el paso uno pero se coloca las acciones "GET" y "DELETE" respectivamente.
+6. Para realizar otras acciones como consultar o borrar, se repite el paso uno pero se coloca las acciones "GET" y "DELETE" respectivamente.
 
 <b>NOTA: </b>en este caso, para consultar los registros realizados, se ingersa a H2
 - Se escribe en el navegador el sigiente link: http://localhost:8080/h2-ui/ y se tiene que ver esta pantalla. Se ajunstan los parametros de "JDBC URL", "user" y "password" declarados en el archivo de properties.
