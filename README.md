@@ -1,4 +1,4 @@
-Para levantar el servicio REST:
+Para ejecutar el servicio REST:
   - Se compila con el comando "mvn clean install", se tiene que ver como se muestra a continuación:
     <img width="1542" height="917" alt="image" src="https://github.com/user-attachments/assets/8252eb7c-9944-43c1-9bc8-92252f536fd3" />
   - Después, se levanta con el comando "mvn spring-boot:run", se tiene que ver como se aprecia a continuación:
@@ -20,7 +20,7 @@ Una vez realizado lo anterior, es posible visualizar los endpoints en "Postman" 
 5. Se muestra un mensaje 200 de éxito
    <img width="1487" height="192" alt="image" src="https://github.com/user-attachments/assets/82a5b296-c9a4-4f34-9ed0-5ec39deb20a0" />
 
-6. Para realizar otras acciones como consultar o borrar, se repite el paso uno pero se coloca las acciones "GET" y "DELETE" respectivamente.
+6. Para realizar otras acciones como consultar o borrar, se repite el paso uno pero se coloca las acciones "GET" y "DELETE" respectivamente con el mismo link mencionado en el paso 1, dependiendo de la accion/método puede o no tener parámetros.
 
 <b>NOTA: </b>en este caso, para consultar los registros realizados, se ingersa a H2
 - Se escribe en el navegador el sigiente link: http://localhost:8080/h2-ui/ y se tiene que ver esta pantalla. Se ajunstan los parametros de "JDBC URL", "user" y "password" declarados en el archivo de properties.
