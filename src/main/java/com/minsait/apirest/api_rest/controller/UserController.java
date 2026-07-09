@@ -2,8 +2,10 @@ package com.minsait.apirest.api_rest.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.minsait.apirest.api_rest.UserService;
+import com.minsait.apirest.api_rest.dto.UserDTO;
+import com.minsait.apirest.api_rest.mapper.UserMapper;
 import com.minsait.apirest.api_rest.model.User;
+import com.minsait.apirest.api_rest.service.UserService;
 
 import java.util.List;
 
@@ -18,8 +20,10 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public UserDTO createUser(@RequestBody UserDTO userDTO) {
+        User user = UserMapper.toEntity(userDTO);
+        User savedUser = userService.createUser(user);
+        return UserMapper.toDTO(savedUser);
     }
 
     @GetMapping
@@ -30,6 +34,12 @@ public class UserController {
     @GetMapping("{id}")
     public User searchUserById(@PathVariable("id") Long id) {
         return userService.getUserById(id);
+    }
+
+    @PutMapping("{id}")
+    public UserDTO updateUser(@PathVariable("id") Long id, @RequestBody UserDTO userDTO) {
+        User updatedUser = userService.updateUser(id, userDTO);
+        return UserMapper.toDTO(updatedUser);
     }
 
     @DeleteMapping("{id}")

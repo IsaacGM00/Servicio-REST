@@ -1,7 +1,8 @@
-package com.minsait.apirest.api_rest;
+package com.minsait.apirest.api_rest.service;
 
 import com.minsait.apirest.api_rest.model.User;
 import com.minsait.apirest.api_rest.repository.UserRepository;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,7 +29,7 @@ class UserServiceImplTest {
     void testCreateUser() {
         User user = new User();
         user.setFirstName("Isaac");
-        user.setLastName("García");
+        user.setLastName("Gutierrez");
         user.setEmail("isaac@example.com");
 
         when(userRepository.save(user)).thenReturn(user);

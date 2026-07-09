@@ -1,9 +1,11 @@
-package com.minsait.apirest.api_rest;
+package com.minsait.apirest.api_rest.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.minsait.apirest.api_rest.dto.UserDTO;
+import com.minsait.apirest.api_rest.mapper.UserMapper;
 import com.minsait.apirest.api_rest.model.User;
 import com.minsait.apirest.api_rest.repository.UserRepository;
 
@@ -28,6 +30,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User updateUser(Long id, UserDTO userDTO) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+
+        UserMapper.updateEntity(existingUser, userDTO);
+
+        return userRepository.save(existingUser);
     }
 
     @Override

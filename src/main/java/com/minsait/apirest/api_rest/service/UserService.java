@@ -1,5 +1,6 @@
-package com.minsait.apirest.api_rest;
+package com.minsait.apirest.api_rest.service;
 
+import com.minsait.apirest.api_rest.dto.UserDTO;
 import com.minsait.apirest.api_rest.model.User;
 import java.util.List;
 
@@ -9,6 +10,8 @@ public interface UserService {
     User getUserById(Long id);
 
     List<User> getAllUsers();
+
+    User updateUser(Long id, UserDTO userDTO);
 
     void deleteUser(Long id);
 }
