@@ -1,105 +1,130 @@
-// package com.minsait.apirest.api_rest.controller;
+package com.minsait.apirest.api_rest.controller;
 
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.MockitoAnnotations;
+import com.minsait.apirest.api_rest.dto.UserCreateDTO;
+import com.minsait.apirest.api_rest.dto.UserDTO;
+import com.minsait.apirest.api_rest.model.User;
+import com.minsait.apirest.api_rest.service.UserService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-// import com.minsait.apirest.api_rest.dto.UserDTO;
-// import com.minsait.apirest.api_rest.model.User;
-// import com.minsait.apirest.api_rest.service.UserService;
+import java.util.Arrays;
+import java.util.List;
 
-// import java.util.Arrays;
-// import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
-// import static org.junit.jupiter.api.Assertions.*;
-// import static org.mockito.Mockito.*;
+class UserControllerTest {
 
-// class UserControllerTest {
+    @Mock
+    private UserService userService;
 
-// @Mock
-// private UserService userService;
+    @InjectMocks
+    private UserController userController;
 
-// @InjectMocks
-// private UserController userController;
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-// private User user;
-// private UserDTO userDTO;
+    @Test
+    void testCreateUser() {
+        UserCreateDTO dto = new UserCreateDTO();
+        dto.setFirstName("Isaac");
+        dto.setLastName("Lopez");
+        dto.setEmail("isaac@test.com");
 
-// @BeforeEach
-// void setUp() {
-// MockitoAnnotations.openMocks(this);
+        User savedUser = new User();
+        savedUser.setId(1L);
+        savedUser.setFirstName("Isaac");
+        savedUser.setLastName("Lopez");
+        savedUser.setEmail("isaac@test.com");
 
-// user = new User();
-// user.setId(1L);
-// user.setFirstName("Isaac");
-// user.setLastName("García");
-// user.setEmail("isaac@example.com");
+        when(userService.createUser(any(User.class))).thenReturn(savedUser);
 
-// userDTO = new UserDTO();
-// userDTO.setFirstName("Isaac");
-// userDTO.setLastName("García");
-// userDTO.setEmail("isaac@example.com");
-// }
+        UserDTO result = userController.createUser(dto);
 
-// @Test
-// void testCreateUser() {
-// when(userService.createUser(any(User.class))).thenReturn(user);
+        assertNotNull(result);
+        assertEquals("Isaac", result.getFirstName());
+        assertEquals("Lopez", result.getLastName());
+        assertEquals("isaac@test.com", result.getEmail());
+        verify(userService, times(1)).createUser(any(User.class));
+    }
 
-// UserDTO result = userController.createUser(userDTO);
+    @Test
+    void testGetAllUsers() {
+        User user1 = new User();
+        user1.setId(1L);
+        user1.setFirstName("Isaac");
+        user1.setLastName("Lopez");
+        user1.setEmail("isaac@test.com");
 
-// assertNotNull(result);
-// assertEquals("Isaac", result.getFirstName());
-// assertEquals("García", result.getLastName());
-// assertEquals("isaac@example.com", result.getEmail());
-// verify(userService, times(1)).createUser(any(User.class));
-// }
+        User user2 = new User();
+        user2.setId(2L);
+        user2.setFirstName("Ana");
+        user2.setLastName("Perez");
+        user2.setEmail("ana@test.com");
 
-// @Test
-// void testGetAllUsers() {
-// when(userService.getAllUsers()).thenReturn(Arrays.asList(user));
+        List<User> users = Arrays.asList(user1, user2);
 
-// List<User> result = userController.getAllUsers();
+        when(userService.getAllUsers()).thenReturn(users);
 
-// assertEquals(1, result.size());
-// assertEquals("Isaac", result.get(0).getFirstName());
-// assertEquals("isaac@example.com", result.get(0).getEmail());
-// verify(userService, times(1)).getAllUsers();
-// }
+        List<User> result = userController.getAllUsers();
 
-// @Test
-// void testSearchUserById() {
-// when(userService.getUserById(1L)).thenReturn(user);
+        assertEquals(2, result.size());
+        assertEquals("Ana", result.get(1).getFirstName());
+        verify(userService, times(1)).getAllUsers();
+    }
 
-// User result = userController.searchUserById(1L);
+    @Test
+    void testSearchUserById() {
+        User user = new User();
+        user.setId(1L);
+        user.setFirstName("Isaac");
+        user.setLastName("Lopez");
+        user.setEmail("isaac@test.com");
 
-// assertNotNull(result);
-// assertEquals(1L, result.getId());
-// assertEquals("Isaac", result.getFirstName());
-// assertEquals("isaac@example.com", result.getEmail());
-// verify(userService, times(1)).getUserById(1L);
-// }
+        when(userService.getUserById(1L)).thenReturn(user);
 
-// @Test
-// void testUpdateUser() {
-// when(userService.updateUser(eq(1L), any(UserDTO.class))).thenReturn(user);
+        User result = userController.searchUserById(1L);
 
-// UserDTO result = userController.updateUser(1L, userDTO);
+        assertNotNull(result);
+        assertEquals("Isaac", result.getFirstName());
+        assertEquals("Lopez", result.getLastName());
+        verify(userService, times(1)).getUserById(1L);
+    }
 
-// assertNotNull(result);
-// assertEquals("Isaac", result.getFirstName());
-// assertEquals("García", result.getLastName());
-// assertEquals("isaac@example.com", result.getEmail());
-// verify(userService, times(1)).updateUser(eq(1L), any(UserDTO.class));
-// }
+    @Test
+    void testUpdateUser() {
+        UserCreateDTO dto = new UserCreateDTO();
+        dto.setFirstName("Isaac Updated");
+        dto.setLastName("Lopez Updated");
+        dto.setEmail("isaac.updated@test.com");
 
-// @Test
-// void testDeleteUserById() {
-// doNothing().when(userService).deleteUser(1L);
+        User updatedUser = new User();
+        updatedUser.setId(1L);
+        updatedUser.setFirstName("Isaac Updated");
+        updatedUser.setLastName("Lopez Updated");
+        updatedUser.setEmail("isaac.updated@test.com");
 
-// userController.deleteUserById(1L);
+        when(userService.updateUser(eq(1L), any(UserCreateDTO.class))).thenReturn(updatedUser);
 
-// verify(userService, times(1)).deleteUser(1L);
-// }
-// }
+        UserDTO result = userController.updateUser(1L, dto);
+
+        assertEquals("Isaac Updated", result.getFirstName());
+        assertEquals("Lopez Updated", result.getLastName());
+        assertEquals("isaac.updated@test.com", result.getEmail());
+        verify(userService, times(1)).updateUser(eq(1L), any(UserCreateDTO.class));
+    }
+
+    @Test
+    void testDeleteUserById() {
+        doNothing().when(userService).deleteUser(1L);
+
+        userController.deleteUserById(1L);
+
+        verify(userService, times(1)).deleteUser(1L);
+    }
+}
